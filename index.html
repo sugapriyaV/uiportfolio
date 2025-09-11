@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suga Priya V - UI/UX Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: #0a0a0a;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        /* Clean Modern Background */
+        .smokey-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 50%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 80%, rgba(147, 51, 234, 0.1) 0%, transparent 50%);
+        }
+        
+        /* Neon Glow Effects */
+        .neon-glow {
+            text-shadow: 0 0 5px #a855f7, 0 0 10px #a855f7, 0 0 15px #a855f7, 0 0 20px #a855f7;
+        }
+        
+        .neon-glow-pink {
+            text-shadow: 0 0 5px #ec4899, 0 0 10px #ec4899, 0 0 15px #ec4899, 0 0 20px #ec4899;
+        }
+        
+        .glow-button {
+            background: linear-gradient(45deg, #a855f7, #ec4899);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+        
+        .glow-button:hover {
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.8), 0 0 40px rgba(236, 72, 153, 0.6);
+            transform: translateY(-2px);
+            border-color: rgba(168, 85, 247, 0.8);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            text-shadow: 0 0 10px #a855f7;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #a855f7, #ec4899);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 5px rgba(168, 85, 247, 0.8);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Fade In Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Skill Cards */
+        .skill-card {
+            background: rgba(15, 15, 30, 0.8);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
+            border-color: rgba(168, 85, 247, 0.8);
+        }
+        
+        /* Project Cards */
+        .project-card {
+            background: rgba(15, 15, 30, 0.9);
+            border: 2px solid rgba(236, 72, 153, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(236, 72, 153, 0.4);
+            border-color: rgba(236, 72, 153, 0.8);
+        }
+        
+        /* Digital Avatar Frame */
+        .digital-frame {
+             position: relative;
+             padding: 4px; /* space for gradient border */
+             border-radius: 20px; /* make it rounded, change to 50% if you want circular */
+             background: linear-gradient(45deg, #a855f7, #ec4899, #a855f7);
+             box-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
+             animation: frameGlow 3s ease-in-out infinite;
+             overflow: hidden; /* keeps image inside rounded border */
+            }
+
+         .digital-frame img {
+             width: 100%;
+              height: 100%;
+             border-radius: 16px; /* slightly smaller than parent */
+             object-fit: cover; /* makes sure image doesn’t stretch */
+             display: block;
+        }
+
+           @keyframes frameGlow {
+              0%, 100% { box-shadow: 0 0 30px rgba(168, 85, 247, 0.5); }
+             50% { box-shadow: 0 0 50px rgba(236, 72, 153, 0.7); }
+             }
+
+        
+        /* Form Styling */
+        .form-input {
+            background: rgba(15, 15, 30, 0.8);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            color: white;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: rgba(168, 85, 247, 0.8);
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+            outline: none;
+        }
+        
+        /* Glowing Divider */
+        .glow-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #a855f7, #ec4899, #a855f7, transparent);
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.6);
+        }
+        
+        /* Contact Icons */
+        .contact-icon {
+            font-size: 2rem;
+            filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.8));
+            transition: all 0.3s ease;
+        }
+        
+        .contact-icon:hover {
+            filter: drop-shadow(0 0 20px rgba(236, 72, 153, 1));
+            transform: scale(1.1);
+        }
+        
+        /* Social Media Icons */
+        .social-icon {
+            filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.6));
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            filter: drop-shadow(0 0 20px rgba(168, 85, 247, 1)) drop-shadow(0 0 30px rgba(236, 72, 153, 0.8));
+            transform: scale(1.2) translateY(-2px);
+        }
+    </style>
+</head>
+<body class="text-white">
+    <!-- Smokey Background -->
+    <div class="smokey-bg"></div>
+    
+    <!-- Sticky Header -->
+    <header class="fixed top-0 w-full bg-black bg-opacity-60 backdrop-blur-md z-50 border-b border-purple-500 border-opacity-20">
+        <nav class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl sm:text-2xl font-bold orbitron neon-glow">Suga Priya V</h1>
+            
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-white focus:outline-none" onclick="toggleMobileMenu()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex space-x-6 lg:space-x-8">
+                <a href="#home" class="nav-link text-white hover:text-purple-300 font-medium text-sm lg:text-base">Home</a>
+                 <a href="#about" class="nav-link text-white hover:text-purple-300 font-medium text-sm lg:text-base">About</a>
+                <a href="#skills" class="nav-link text-white hover:text-purple-300 font-medium text-sm lg:text-base">Skills</a>
+                <a href="#projects" class="nav-link text-white hover:text-purple-300 font-medium text-sm lg:text-base">Projects</a>
+                <a href="#contact" class="nav-link text-white hover:text-purple-300 font-medium text-sm lg:text-base">Contact</a>
+            </div>
+        </nav>
+        
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="md:hidden bg-black bg-opacity-90 backdrop-blur-md border-t border-purple-500 border-opacity-20 hidden">
+            <div class="px-4 py-4 space-y-4">
+                <a href="#home" class="block nav-link text-white hover:text-purple-300 font-medium py-2" onclick="closeMobileMenu()">Home</a>
+                <a href="#about" class="block nav-link text-white hover:text-purple-300 font-medium py-2" onclick="closeMobileMenu()">Home</a>
+                <a href="#skills" class="block nav-link text-white hover:text-purple-300 font-medium py-2" onclick="closeMobileMenu()">Skills</a>
+                <a href="#projects" class="block nav-link text-white hover:text-purple-300 font-medium py-2" onclick="closeMobileMenu()">Projects</a>
+                <a href="#contact" class="block nav-link text-white hover:text-purple-300 font-medium py-2" onclick="closeMobileMenu()">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="min-h-screen flex items-center pt-20 px-4 sm:px-6">
+        <div class="container mx-auto text-center">
+            <div class="fade-in">
+                <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold orbitron mb-4 sm:mb-6 neon-glow">
+                    Suga Priya V
+                </h2>
+                <h3 class="text-2xl sm:text-3xl md:text-4xl text-purple-300 mb-4 neon-glow-pink">UI & UX Designer</h3>
+                <p class="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed px-4">
+                    Passionate about creating beautiful, functional digital experiences that captivate and engage users. 
+                    Focused on <span class="text-purple-400 neon-glow">UI/UX design</span> to craft meaningful interactions 
+                    in the modern digital landscape.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mb-8 sm:mb-12 px-4">
+                    <button class="glow-button px-6 sm:px-8 py-3 rounded-full text-white font-semibold orbitron text-sm sm:text-base"onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=sugapriyait08@gmail.com&su=Portfolio%20Contact&body=Hi%20Suga%20Priya,%0D%0A%0D%0AI%20found%20your%20portfolio%20and%20would%20like%20to%20get%20in%20touch.%0D%0A%0D%0ABest%20regards','_blank')">
+                          Get in Touch
+                     </button>
+
+                  <button class="glow-button px-6 sm:px-8 py-3 rounded-full text-white font-semibold orbitron text-sm sm:text-base" onclick="window.open('img/UI_Resume.pdf', '_blank')">
+                  View Resume
+                   </button>
+                </div>
+                
+                <!-- Social Media Icons -->
+                <div class="flex justify-center space-x-4 sm:space-x-6 md:space-x-8">
+                    <a href="https://www.linkedin.com/in/suga-priya-v-bb0942282/" target="_blank" class="social-icon transition-all duration-300">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" class="text-blue-400 sm:w-10 sm:h-10">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/sugapriyaV" target="_blank" class="social-icon transition-all duration-300">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" class="text-gray-300 sm:w-10 sm:h-10">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/uxorbit_suga/" target="_blank" class="social-icon transition-all duration-300">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" class="text-pink-400 sm:w-10 sm:h-10">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-12 sm:py-16 md:py-20">
+        <div class="container mx-auto px-4 sm:px-6">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold orbitron text-center mb-8 sm:mb-12 md:mb-16 neon-glow fade-in">About Me</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
+                <!-- Left Column - Details -->
+                <div class="fade-in order-2 md:order-1">
+                    <div class="space-y-6 sm:space-y-8">
+                        <div>
+                            <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-purple-300 orbitron neon-glow">Who I Am</h3>
+                            <div class="glow-divider mb-3 sm:mb-4"></div>
+                            <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                                I'm Suga Priya, a passionate UI/UX designer dedicated to creating meaningful and visually stunning digital experiences. I believe design is not just about looks but about crafting interactions that feel natural and engaging. My strength lies in blending creativity with empathy, always keeping users at the center of the process. Alongside design, I explore digital marketing to understand how design can connect brands with people more effectively.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-purple-300 orbitron neon-glow">Education</h3>
+                            <div class="glow-divider mb-3 sm:mb-4"></div>
+                            <div class="space-y-2">
+                                <h4 class="text-lg sm:text-xl font-semibold text-pink-400">BSc Information Technology</h4>
+                                <p class="text-gray-300 text-sm sm:text-base">Maharani Arts and Science College, Dharapuram</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-purple-300 orbitron neon-glow">Interests</h3>
+                            <div class="glow-divider mb-3 sm:mb-4"></div>
+                            <div class="space-y-2 text-gray-300 text-sm sm:text-base">
+                                <p>• UI/UX Design</p>
+                                <p>• Social Media Executive</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column - Digital Illustration -->
+                <div class="flex justify-center fade-in order-1 md:order-2 mb-8 md:mb-0">
+                    <div class="digital-frame w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80">
+                        <img src="img/myimg.jpeg" alt="Suga Priya" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-12 sm:py-16 md:py-20">
+        <div class="container mx-auto px-4 sm:px-6">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold orbitron text-center mb-8 sm:mb-12 md:mb-16 neon-glow fade-in">Skills</h2>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+                <!-- Designing Skills -->
+                <div class="skill-card rounded-xl p-4 sm:p-6 fade-in">
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-pink-300 orbitron neon-glow-pink">Designing Skills</h3>
+                    <ul class="space-y-2 sm:space-y-3 text-gray-300 text-sm sm:text-base">
+                        <li class="flex items-center"><span class="text-pink-400 mr-2">▸</span> Wireframing</li>
+                        <li class="flex items-center"><span class="text-pink-400 mr-2">▸</span> Prototyping</li>
+                        <li class="flex items-center"><span class="text-pink-400 mr-2">▸</span> Visual Design</li>
+                        <li class="flex items-center"><span class="text-pink-400 mr-2">▸</span> Interaction Design</li>
+                    </ul>
+                </div>
+                
+                <!-- Tools Knowledge -->
+                <div class="skill-card rounded-xl p-4 sm:p-6 fade-in">
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-pink-400 orbitron neon-glow-pink">Tools Knowledge</h3>
+                    <ul class="space-y-2 sm:space-y-3 text-gray-300 text-sm sm:text-base">
+                        <li class="flex items-center"><span class="text-pink-400 mr-2">▸</span> Figma</li>
+                        <li class="flex items-center"><span class="text-pink-400 mr-2">▸</span> Canva</li>
+                        <li class="flex items-center"><span class="text-pink-400 mr-2">▸</span> Photoshop Basics</li>
+                        <li class="flex items-center"><span class="text-pink-400 mr-2">▸</span> Framer</li>
+                    </ul>
+                </div>
+                
+                <!-- Technical Skills -->
+                <div class="skill-card rounded-xl p-4 sm:p-6 fade-in">
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-purple-300 orbitron neon-glow">Technical Skills</h3>
+                    <ul class="space-y-2 sm:space-y-3 text-gray-300 text-sm sm:text-base">
+                        <li class="flex items-center"><span class="text-purple-400 mr-2">▸</span> HTML</li>
+                        <li class="flex items-center"><span class="text-purple-400 mr-2">▸</span> CSS</li>
+                        <li class="flex items-center"><span class="text-purple-400 mr-2">▸</span> JavaScript - Basic</li>
+                        <li class="flex items-center"><span class="text-purple-400 mr-2">▸</span> Bootstrap</li>
+                    </ul>
+                </div>
+                
+                <!-- Soft Skills -->
+                <div class="skill-card rounded-xl p-4 sm:p-6 fade-in">
+                    <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-purple-400 orbitron neon-glow">Soft Skills</h3>
+                    <ul class="space-y-2 sm:space-y-3 text-gray-300 text-sm sm:text-base">
+                        <li class="flex items-center"><span class="text-purple-400 mr-2">▸</span> Creativity</li>
+                        <li class="flex items-center"><span class="text-purple-400 mr-2">▸</span> Problem Solving</li>
+                        <li class="flex items-center"><span class="text-purple-400 mr-2">▸</span> Attention to Detail</li>
+                        <li class="flex items-center"><span class="text-purple-400 mr-2">▸</span> Responsive Mindset</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-12 sm:py-16 md:py-20">
+        <div class="container mx-auto px-4 sm:px-6">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold orbitron text-center mb-8 sm:mb-12 md:mb-16 neon-glow fade-in">Projects</h2>
+            
+            <div class="grid md:grid-cols-2 gap-6 sm:gap-8">
+                <!-- Project 1 -->
+                <div class="project-card rounded-xl p-4 sm:p-6 md:p-8 fade-in">
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-gray-200 orbitron">Final Year Project</h3>
+                    <h4 class="text-base sm:text-lg md:text-xl font-semibold mb-3 sm:mb-4 text-pink-400">Efficient and Privacy Preserving Online Fingerprint</h4>
+                    <p class="text-gray-300 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
+                        Advanced biometric authentication system built using ASP.NET and SQL Server, 
+                        focusing on security and privacy preservation for online fingerprint verification.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 sm:px-4 py-1 sm:py-2 bg-purple-600 bg-opacity-50 rounded-full text-xs sm:text-sm border border-purple-400">ASP.NET</span>
+                        <span class="px-3 sm:px-4 py-1 sm:py-2 bg-pink-600 bg-opacity-50 rounded-full text-xs sm:text-sm border border-pink-400">SQL Server</span>
+                        <span class="px-3 sm:px-4 py-1 sm:py-2 bg-purple-500 bg-opacity-50 rounded-full text-xs sm:text-sm border border-purple-300">Security</span>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card rounded-xl p-4 sm:p-6 md:p-8 fade-in">
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-gray-200 orbitron">Jaffersherin Fashion Website</h3>
+                    <a href="https://jaffarsherinfashion.netlify.app/" target="_blank" class="text-base sm:text-lg md:text-xl font-normal mb-3 sm:mb-4 text-pink-400">View Project</a>
+                    <p class="text-gray-300 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
+                        Complete fashion e-commerce platform featuring hero banner, collection filters, 
+                        detailed about section, and responsive mobile menu for seamless shopping experience.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 sm:px-4 py-1 sm:py-2 bg-pink-600 bg-opacity-50 rounded-full text-xs sm:text-sm border border-pink-400">HTML/CSS</span>
+                        <span class="px-3 sm:px-4 py-1 sm:py-2 bg-purple-600 bg-opacity-50 rounded-full text-xs sm:text-sm border border-purple-400">JavaScript</span>
+                        <span class="px-3 sm:px-4 py-1 sm:py-2 bg-pink-500 bg-opacity-50 rounded-full text-xs sm:text-sm border border-pink-300">E-commerce</span>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card rounded-xl p-4 sm:p-6 md:p-8 fade-in">
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-gray-200 orbitron">Stusent Scholarship Tracking App</h3>
+                     <a href="https://www.figma.com/proto/jbJl3Gu7A7J8IiQHqZhzl3/scholarship-tracking?page-id=0%3A1&node-id=1-7&starting-point-node-id=1%3A7&t=dW6ARz4DbyIva6pM-1" target="_blank" class="text-base sm:text-lg md:text-xl font-normal mb-3 sm:mb-4 text-pink-400">View Project</a>
+                    <p class="text-gray-300 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
+                        This app is designed with a student-first approach, focusing on simplicity, clarity, and usability.
+                         The goal is to make managing scholarships intuitive and stress-free.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 sm:px-4 py-1 sm:py-2 bg-purple-600 bg-opacity-50 rounded-full text-xs sm:text-sm border border-purple-400">Prototype</span>
+                        <span class="px-3 sm:px-4 py-1 sm:py-2 bg-pink-600 bg-opacity-50 rounded-full text-xs sm:text-sm border border-pink-400">Wireframing</span>
+                        <span class="px-3 sm:px-4 py-1 sm:py-2 bg-purple-500 bg-opacity-50 rounded-full text-xs sm:text-sm border border-purple-300">Color Theory</span>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="project-card rounded-xl p-4 sm:p-6 md:p-8 fade-in">
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-gray-200 orbitron">BMW Car Showcasing</h3>
+                     <a href="https://www.figma.com/proto/5tgoJBrHBOTgpRIrUlrVLL/Untitled?page-id=0%3A1&node-id=8-65&starting-point-node-id=3%3A2&t=2oamUTRMWIm84yX4-1" target="_blank" class="text-base sm:text-lg md:text-xl font-normal mb-3 sm:mb-4 text-pink-400">View Project</a>
+                    <p class="text-gray-300 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
+                        This project showcases a premium car showroom experience designed to reflect
+                        BMW’s luxury brand identity while ensuring user-friendly navigation and engagement.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 sm:px-4 py-1 sm:py-2 bg-pink-600 bg-opacity-50 rounded-full text-xs sm:text-sm border border-pink-400">Clean Layout</span>
+                        <span class="px-3 sm:px-4 py-1 sm:py-2 bg-purple-600 bg-opacity-50 rounded-full text-xs sm:text-sm border border-purple-400">Design</span>
+                        <span class="px-3 sm:px-4 py-1 sm:py-2 bg-pink-500 bg-opacity-50 rounded-full text-xs sm:text-sm border border-pink-300">Prototype</span>
+                    </div>
+                </div>
+
+
+                <!-- Project 5 -->
+                <div class="project-card rounded-xl p-4 sm:p-6 md:p-8 fade-in">
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-gray-200 orbitron">Mac Airpods</h3>
+                     <a href="https://www.figma.com/proto/GPVFKPsH71maQBK4PWubEU/airphone?page-id=0%3A1&node-id=1-6&starting-point-node-id=1%3A6&t=wIHUOCJDFdO9EdqC-1" target="_blank" class="text-base sm:text-lg md:text-xl font-normal mb-3 sm:mb-4 text-pink-400">View Project</a>
+                    <p class="text-gray-300 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
+                        This project presents a digital experience for showcasing Apple products, specifically MacBooks
+                        and AirPods, focusing on clarity, elegance, and smooth interactions.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 sm:px-4 py-1 sm:py-2 bg-pink-600 bg-opacity-50 rounded-full text-xs sm:text-sm border border-pink-400">Minimalist Design</span>
+                        <span class="px-3 sm:px-4 py-1 sm:py-2 bg-purple-600 bg-opacity-50 rounded-full text-xs sm:text-sm border border-purple-400">Interactive Product Display</span>
+                        <span class="px-3 sm:px-4 py-1 sm:py-2 bg-pink-500 bg-opacity-50 rounded-full text-xs sm:text-sm border border-pink-300">Prototype</span>
+                    </div>
+                </div>
+
+
+                <!-- Project 6 -->
+                <div class="project-card rounded-xl p-4 sm:p-6 md:p-8 fade-in">
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-gray-200 orbitron">Anvora Site</h3>
+                     <a href="https://www.figma.com/proto/LN22ADM5NA18ha9FVsbWIP/task?page-id=0%3A1&node-id=60-179&viewport=244%2C282%2C0.05&t=QhpykX7E41MSRsCo-1&scaling=min-zoom&content-scaling=fixed" target="_blank" class="text-base sm:text-lg md:text-xl font-normal mb-3 sm:mb-4 text-pink-400">View Project</a>
+                    <p class="text-gray-300 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
+                        This project showcases the UI/UX design of Anvora’s website, 
+                        aimed at delivering a clean, intuitive, and engaging user experience.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 sm:px-4 py-1 sm:py-2 bg-pink-600 bg-opacity-50 rounded-full text-xs sm:text-sm border border-pink-400">Animated</span>
+                        <span class="px-3 sm:px-4 py-1 sm:py-2 bg-purple-600 bg-opacity-50 rounded-full text-xs sm:text-sm border border-purple-400">Focus On Design</span>
+                        <span class="px-3 sm:px-4 py-1 sm:py-2 bg-pink-500 bg-opacity-50 rounded-full text-xs sm:text-sm border border-pink-300">Prototype</span>
+                    </div>
+                </div>
+
+                 <!-- Project 7 -->
+                <div class="project-card rounded-xl p-4 sm:p-6 md:p-8 fade-in">
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-gray-200 orbitron">Morden Home</h3>
+                     <a href="https://www.figma.com/proto/m5a8hxhcwYJb0myqUDLYqQ/home?page-id=0%3A1&node-id=3-6&viewport=-677%2C-140%2C0.68&t=q3saQMicunP4MYAm-1&scaling=scale-down&content-scaling=fixed" target="_blank" class="text-base sm:text-lg md:text-xl font-normal mb-3 sm:mb-4 text-pink-400">View Project</a>
+                    <p class="text-gray-300 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
+                        A modern house with sleek design, large windows, and open spaces filled with natural light.
+                         It combines style, comfort, and functionality for a contemporary lifestyle.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 sm:px-4 py-1 sm:py-2 bg-pink-600 bg-opacity-50 rounded-full text-xs sm:text-sm border border-pink-400">Color Grading</span>
+                        <span class="px-3 sm:px-4 py-1 sm:py-2 bg-purple-600 bg-opacity-50 rounded-full text-xs sm:text-sm border border-purple-400">Focus On Design</span>
+                        <span class="px-3 sm:px-4 py-1 sm:py-2 bg-pink-500 bg-opacity-50 rounded-full text-xs sm:text-sm border border-pink-300">Prototype</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12 sm:py-16 md:py-20">
+        <div class="container mx-auto px-4 sm:px-6">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold orbitron text-center mb-8 sm:mb-12 md:mb-16 neon-glow fade-in">Contact Me</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16">
+                <!-- Contact Form -->
+                <div class="fade-in">
+                    <form class="space-y-4 sm:space-y-6" onsubmit="handleSubmit(event)">
+                        <div>
+                            <input type="text" placeholder="Your Name" required 
+                                   class="form-input w-full px-4 sm:px-6 py-3 sm:py-4 rounded-xl text-sm sm:text-base">
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Your Email" required 
+                                   class="form-input w-full px-4 sm:px-6 py-3 sm:py-4 rounded-xl text-sm sm:text-base">
+                        </div>
+                        <div>
+                            <textarea placeholder="Your Message" rows="5" required 
+                                      class="form-input w-full px-4 sm:px-6 py-3 sm:py-4 rounded-xl resize-none text-sm sm:text-base"></textarea>
+                        </div>
+                        <button type="submit" class="glow-button w-full py-3 sm:py-4 rounded-xl font-semibold orbitron text-sm sm:text-base md:text-lg">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="fade-in">
+                    <div class="space-y-6 sm:space-y-8 md:space-y-10">
+                        <div class="flex items-center space-x-4 sm:space-x-6">
+                            <div class="contact-icon text-2xl sm:text-3xl">📧</div>
+                            <div>
+                                <h3 class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-200 mb-1 sm:mb-2">Email</h3>
+                                <p class="text-gray-300 text-sm sm:text-base md:text-lg break-all flex items-center">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-purple-400 mr-2 flex-shrink-0">
+                                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                    </svg>
+                                    sugapriyait08@gmail.com
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4 sm:space-x-6">
+                            <div class="contact-icon text-2xl sm:text-3xl">📱</div>
+                            <div>
+                                <h3 class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-200 mb-1 sm:mb-2">Phone</h3>
+                                <p class="text-gray-300 text-sm sm:text-base md:text-lg">7418311855</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4 sm:space-x-6">
+                            <div class="contact-icon text-2xl sm:text-3xl">📍</div>
+                            <div>
+                                <h3 class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-200 mb-1 sm:mb-2">Location</h3>
+                                <p class="text-gray-300 text-sm sm:text-base md:text-lg">South Avinashippalayam, Tiruppur</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 sm:py-12 md:py-16 border-t border-purple-500 border-opacity-20">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="glow-divider mb-6 sm:mb-8"></div>
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 sm:mb-6 md:mb-0">
+                    <p class="text-gray-400 text-sm sm:text-base md:text-lg text-center md:text-left">© 2025 Suga Priya V. All Rights Reserved</p>
+                </div>
+                <div class="flex space-x-4 sm:space-x-6">
+                    <a href="https://www.linkedin.com/in/suga-priya-v-bb0942282/" target="_blank" class="social-icon transition-all duration-300">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" class="text-blue-400 sm:w-8 sm:h-8">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/sugapriyaV" target="_blank" class="social-icon transition-all duration-300">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" class="text-gray-300 sm:w-8 sm:h-8">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/uxorbit_suga/" target="_blank" class="social-icon transition-all duration-300">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" class="text-pink-400 sm:w-8 sm:h-8">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functions
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+        
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.add('hidden');
+        }
+
+        // Smooth scroll to section
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Fade in animation on scroll
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.fade-in');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Form submission handler
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const name = event.target.querySelector('input[type="text"]').value;
+            const email = event.target.querySelector('input[type="email"]').value;
+            const message = event.target.querySelector('textarea').value;
+            
+            // Create mailto link
+            const subject = `Portfolio Contact from ${name}`;
+            const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+            const mailtoLink = `mailto:sugapriyait08@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            alert('Thank you for your message! Your email client should open now.');
+            
+            // Reset form
+            event.target.reset();
+        }
+
+        // Initialize animations
+        window.addEventListener('scroll', handleScrollAnimations);
+        window.addEventListener('load', handleScrollAnimations);
+
+        // Initial call for elements already in view
+        handleScrollAnimations();
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97d3b4df061c7ec7',t:'MTc1NzU1NzQ0Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
